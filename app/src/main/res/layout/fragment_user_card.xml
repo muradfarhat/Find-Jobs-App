@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserCardFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_card_height"
+        android:background="@drawable/card_view_corners"
+        android:paddingStart="@dimen/top_card_padding_start"
+        android:paddingEnd="@dimen/top_card_padding_end">
+
+        <!--        User Info:  image, name, and notidication-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/person_info_height"
+            android:layout_marginTop="@dimen/person_info_margin_top">
+
+            <!--            User Image-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/image_view_width_and_height"
+                android:layout_height="@dimen/image_view_width_and_height"
+                android:background="@dimen/image_corner_radius">
+
+                <ImageView
+                    android:layout_width="@dimen/image_view_width_and_height"
+                    android:layout_height="@dimen/image_view_width_and_height"
+                    android:src="@drawable/murad_photo"
+                    android:background="@dimen/image_corner_radius"/>
+            </androidx.cardview.widget.CardView>
+
+            <!--            User Name-->
+            <TextView
+                android:id="@+id/usernameText"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/name_height"
+                android:layout_marginStart="@dimen/name_margin_left"
+                android:layout_marginTop="@dimen/name_margin_top"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/name_text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/name_text_size" />
+
+            <!--            Notification Icon-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/notification_icon_margin_top"
+                android:src="@drawable/notification" />
+
+        </RelativeLayout>
+
+        <!--        Search Label-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/search_label_height"
+            android:layout_marginTop="@dimen/search_label_margin_top"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/search_label"
+            android:textColor="@color/white"
+            android:id="@+id/tvRecomended"
+            android:textSize="@dimen/search_label_text_size" />
+
+        <!--        Search Edit Text-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@+id/tvRecomended"
+            android:layout_marginTop="@dimen/search_edit_margin_top"
+            android:background="@drawable/search_edit_text_drawable"
+            android:layout_height="45dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/search"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:id="@+id/imFirst"
+                android:layout_height="wrap_content">
+
+            </ImageView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_edit_text_height"
+                android:ellipsize="start"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_toEndOf="@+id/imFirst"
+                android:hint="@string/search_edit_text_hint"
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                android:background="@null"
+                android:layout_toStartOf="@+id/imTwo"
+                android:textColor="@color/text_color_hint"
+                android:textColorHint="@color/text_color_hint"
+                android:layout_marginEnd="5dp"
+                android:textSize="@dimen/search_edit_text_size" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/filter"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/imTwo"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content">
+
+            </ImageView>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>
