@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/recycler_view_margin_start"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="@dimen/recycler_view_margin_start"
         android:orientation="vertical">
 

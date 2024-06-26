@@ -19,15 +19,23 @@ class RecyclerViewActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_recycler_view)
 
+        val username = intent.getStringExtra("EXTRA_USERNAME").toString()
         // Add User Card Fragment
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.userCard, UserCardFragment())
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val bundle =  Bundle();
+ bundle.putString("userName",username)
+
+        val userFragments = UserCardFragment()
+       userFragments.arguments=bundle
+
+        val userCardFT = fragmentManager.beginTransaction()
+        userCardFT.add(R.id.userCard, userFragments)
+        userCardFT.addToBackStack(null)
+        userCardFT.commit()
 
         // Add Recycler View Card Fragment
-        fragmentTransaction.add(R.id.recyclerViewCard, RecyclerViewCardFragment())
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val recycleViewCardFT = fragmentManager.beginTransaction()
+        recycleViewCardFT.add(R.id.recyclerViewCard, RecyclerViewCardFragment())
+        recycleViewCardFT.addToBackStack(null)
+        recycleViewCardFT.commit()
     }
 }
