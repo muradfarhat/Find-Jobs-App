@@ -69,5 +69,7 @@
     <string name="apply_now">Apply Now</string>
     <string name="job_details">Job Details</string>
     <string name="_50_100">50 - 100</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
