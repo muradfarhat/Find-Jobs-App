@@ -31,21 +31,6 @@ class MainActivity : ComponentActivity() {
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
 
-//        val username = findViewById<EditText?>(R.id.userName)
-//        val password = findViewById<EditText?>(R.id.password)
-//        val loginBtn: TextView = findViewById(R.id.loginbtn)
-//        var intent: Intent
-//
-//        loginBtn.setOnClickListener {
-//                if(username.text.isNotEmpty() && CommonUtils.isValidEmailFormat(username.text.toString()) && password.text.isNotEmpty()) {
-//                intent = Intent(this@MainActivity, RecyclerViewActivity::class.java)
-//                intent.putExtra("EXTRA_USERNAME", username.text.toString())
-//                startActivity(intent)
-//            } else {
-//                Toast.makeText(this@MainActivity,
-//                    getString(R.string.invalid_email_or_password), Toast.LENGTH_SHORT).show()
-//            }
-//        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

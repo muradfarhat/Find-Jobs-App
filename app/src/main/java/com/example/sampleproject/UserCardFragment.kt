@@ -35,10 +35,6 @@ class UserCardFragment() : Fragment() {
         this.arguments?.let {
             usernameText.setText(    it.getString("userName"))
         }
-
-       // usernameText.setText("Hi, $userNam")
-
-//        usernameText.text = "Hi, $username"
         return view
     }
 

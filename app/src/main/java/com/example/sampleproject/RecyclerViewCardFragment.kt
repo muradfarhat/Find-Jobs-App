@@ -1,16 +1,21 @@
 package com.example.sampleproject
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.app.Fragment
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampleproject.interfaces.OnItemClickListener
+import com.example.sampleproject.interfaces.OnRecyclerCardClick
 import com.example.sampleproject.views.activities.Item
 import com.example.sampleproject.views.activities.JobDetailsActivity
+import com.example.sampleproject.views.activities.JobDetailsData
 import com.example.sampleproject.views.activities.JobItemAdapter
 import com.example.sampleproject.views.activities.RecyclerViewActivity
 
@@ -91,7 +96,10 @@ class RecyclerViewCardFragment : Fragment(), OnItemClickListener {
             "\$12k - 20k/years"
         )
     )
+
     private lateinit var recyclerView: RecyclerView
+//    private val recyclerViewActivity = RecyclerViewActivity()
+    private  var recycleViewListener: OnRecyclerCardClick?=null
 
 
     override fun onCreateView(
@@ -102,20 +110,65 @@ class RecyclerViewCardFragment : Fragment(), OnItemClickListener {
         val view = inflater.inflate(R.layout.fragment_recycler_view_card, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(RecyclerViewActivity())
+        recyclerView.layoutManager = LinearLayoutManager(activity)
 
         val adapter = JobItemAdapter(data, this)
         recyclerView.adapter = adapter
+
 
         return view
     }
 
 
-    override fun onItemClick(position: Int) {
-        val intent = Intent(RecyclerViewActivity(), JobDetailsActivity::class.java)
-        intent.putExtra("tvCompany", data[position].tvCompany)
-        intent.putExtra("tvTittle", data[position].tvTitle)
-        intent.putExtra("salary", data[position].salary)
-        startActivity(intent)
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        if (context is OnRecyclerCardClick) {
+            recycleViewListener = context as OnRecyclerCardClick
+        } else {
+            throw RuntimeException("$context must implement OnDataPass")
+        }
     }
+
+    override fun onItemClick(position: Int) {
+//        val intent = Intent(RecyclerViewActivity(), JobDetailsActivity::class.java)
+//        intent.putExtra("tvCompany", data[position].tvCompany)
+//        intent.putExtra("tvTittle", data[position].tvTitle)
+//        intent.putExtra("salary", data[position].salary)
+//        startActivity(intent)
+
+        val intent = Intent()
+        val jobDetailsData = JobDetailsData()
+
+        jobDetailsData.tvTittle = data[position].tvTitle
+        jobDetailsData.tvCompany = data[position].tvCompany
+        jobDetailsData.salary = data[position].salary
+
+        recycleViewListener?.onCardClickListener(jobDetailsData)
+
+//        val bundle = Bundle()
+//        bundle.putString("tvTittle", data[position].tvTitle)
+//        bundle.putString("tvCompany", data[position].tvCompany)
+//        bundle.putString("salary", data[position].salary)
+//
+//        val jobDetails = JobDetailsFragment()
+//        jobDetails.arguments = bundle
+//
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.add(R.id.recyclerViewCard, jobDetails)
+//        fragmentTransaction.addToBackStack(null)
+//        fragmentTransaction.commit()
+        
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.add(R.id.recyclerViewCard, jobDetails)
+//        fragmentTransaction.addToBackStack(null)
+//        fragmentTransaction.commit()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.e("bino","")
+    }
+
+
 }
